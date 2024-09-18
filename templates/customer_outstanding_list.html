@@ -1,0 +1,179 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Customer List{% endblock title %}
+
+
+{% block head %}
+
+<style>
+
+   
+    
+</style>
+
+{% endblock head %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            
+            {% comment %} <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Product</a></li>
+                            <li class="active">List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+{% comment %} <div style="justify-content: center;display: flex;align-items: center;">
+    <a href="{% url 'add_godown' %}"> <button id="payment-button" style="background-color: #05386b; border: green; padding: 10px;border-radius: 12px;" type="button" class="btn-info ">
+         <span id="payment-button-amount">Add godown  +</span>
+     </button> </a>
+   
+</div><br> {% endcomment %}
+
+
+<br>
+
+    <p>
+    
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Filters
+        </button>
+    </p>
+
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body" style="width: fit-content;">
+
+            <form method="get" action="" style="padding:15px;">
+
+                {% csrf_token %}
+
+                <div class="form-group" style="gap: 14px; width: 400px;">
+
+                    <label for="name" class="control-label mb-1" style="margin-left : 0px;">Customer</label>
+                    {{ record_filters.form.name }}
+                    <br>
+
+                    <label for="name" class="control-label mb-1" style="margin-left : 0px;">From Date</label>
+                    {{ record_filters.form.from_date }}
+                    <br>
+
+                    <label for="name" class="control-label mb-1" style="margin-left : 0px;">To Date</label>
+                    {{ record_filters.form.to_date }}
+                    <br>
+
+                    <a href="{% url 'list_record' %}"><button class="btn btn-primary" type="button" > Reset </button></a>
+
+                    <button class="btn btn-primary" type="submit" > Submit </button>
+                
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="col-12" style="display: flex;">
+                    <div >
+                        <h4 class="box-title" style="width: 243px;"> List Customer Outstanding </h4>
+                    </div>
+
+                    {% comment %} <div style="text-align: right; display: flex;width: 84%;justify-content: right;">
+                        <h4 class="box-title"> <span style="color: red; margin-right: 18px;"> Outstanding Amount Sum : {{ outstanding_amount_sum }} ₹ </span> </h4>
+                    </div> {% endcomment %}
+                </div>
+
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Name</th>
+                                <th>Amount</th>
+                                <th>Test Type</th>
+                                <th>Reference Doctor</th>
+                                <th>Mobile</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if data %}
+                            {% for i in data %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ i.customer.name }}</td>
+                                <td>{{ i.customer.amount }}</td>
+                                <td>{{ i.customer.test_type }}</td>
+                                <td>{{ i.customer.dr }}</td>
+                                <td>{{ i.customer.mobile }}</td>
+                           
+                               
+                               
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr><td>No Record Data</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div>  <!-- /.col-lg-8 -->
+
+    
+</div>
+{% endblock content %}
+
+
+
+
+{% block js %}
+
+<script>
+
+
+
+    function copyToClipboard(text) {
+        // Create a temporary input element
+        var input = document.createElement('input');
+        input.setAttribute('value', text);
+        document.body.appendChild(input);
+    
+        // Select the text
+        input.select();
+    
+        // Copy to clipboard
+        document.execCommand('copy');
+    
+        // Remove the temporary input element
+        document.body.removeChild(input);
+    
+        // Notify the user
+        alert('URL copied to clipboard!');
+    }
+
+
+</script>
+
+
+{% endblock js %}
