@@ -19,6 +19,19 @@
                         <li><i class="fa fa-th"></i><a href="{% url 'list_customer' %}">View</a></li>
                     </ul>
                 </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-building"></i>Add Test Type</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-id-card-o"></i><a href="{% url 'add_test_type' %}">Add</a></li>
+                        <li><i class="fa fa-th"></i><a href="{% url 'list_test_type' %}">View</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="menu-title">Transaction</li><!-- /.menu-title -->
+
+                
                 <li class="">
                     <a href="{% url 'list_record' %}"><i class="menu-icon fa fa-laptop"></i>Sell Report </a>
                 </li>
