@@ -26,6 +26,19 @@ class customer_Form(forms.ModelForm):
 
         }
 
+class test_type_Form(forms.ModelForm):
+    class Meta:
+        model = test_type
+        fields = '__all__'
+        widgets = {
+           
+            'name': forms.TextInput(attrs={
+                'class': 'form-control', 'id': 'name'
+            }),
+            
+
+        }
+
 class record_Form(forms.ModelForm):
     class Meta:
         model = record

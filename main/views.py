@@ -244,7 +244,93 @@ def delete_customer(request, customer_id):
 
     customer.objects.get(id = customer_id).delete()
 
-    return redirect('list_customer.html')
+    return redirect('list_customer')
+
+
+
+
+
+
+@login_required(login_url='login')
+def add_test_type(request):
+
+    if request.method == 'POST':
+
+        forms = test_type_Form(request.POST)
+
+        if forms.is_valid():
+            
+           
+            forms.save()
+        
+            return redirect('list_test_type')
+        
+        else:
+            print(forms.errors)
+    
+    else:
+
+        forms = test_type_Form()
+
+        context = {
+            'form': forms
+        }
+        return render(request, 'add_test_type.html', context)
+
+
+
+
+@login_required(login_url='login')
+def update_test_type(request, test_type_id):
+
+    test_type_instance = test_type.objects.get(id = test_type_id)
+
+    if request.method == 'POST':
+
+        forms = test_type_Form(request.POST, instance = test_type_instance)
+
+        if forms.is_valid():
+            
+           
+            forms.save()
+        
+            return redirect('list_test_type')
+        
+        else:
+            print(forms.errors)
+    
+    else:
+
+        forms = test_type_Form(instance=test_type_instance)
+
+        context = {
+            'form': forms
+        }
+        return render(request, 'add_test_type.html', context)
+
+
+
+
+
+@login_required(login_url='login')
+def list_test_type(request):
+
+    data = test_type.objects.all()
+
+    context = {
+        'data': data
+    }
+
+    return render(request, 'list_test_type.html', context)
+
+
+
+@login_required(login_url='login')
+def delete_test_type(request, test_type_id):
+
+    test_type.objects.get(id = test_type_id).delete()
+
+    return redirect('list_test_type')
 
 
 
