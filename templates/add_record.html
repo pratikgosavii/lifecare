@@ -32,7 +32,7 @@
     {% endfor %}
 {% endif %}
 
-      
+
 <div class="row">
     <div class="col-xl-12">
 
@@ -52,7 +52,7 @@
                 <strong class="card-title">Add Sell</strong>
             </div>
 
-      
+
 
             <div class="card-body">
                 <!-- Credit Card -->
@@ -62,9 +62,9 @@
                             {% csrf_token %}
 
                             <input type="hidden" name="customer" value="{{ customer }}">
-                       
-                          
-                           
+
+
+
                             <div class="form-group">
                                 <label for="name" class="control-label mb-1">Test Type</label>
                                 {{ form.test_type }}
@@ -85,7 +85,7 @@
                                 <label for="name" class="control-label mb-1">Date</label>
                                 {{ form.date }}
                             </div>
-                            
+
 
                             <div>
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
@@ -108,7 +108,7 @@
 
 
 <script>
-{% comment %} 
+{% comment %}
 document.getElementById('asdas').addEventListener('submit', function(evt){
 
     evt.preventDefault();
