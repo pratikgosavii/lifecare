@@ -83,9 +83,10 @@ from .filters import *
 @login_required(login_url='login')
 def list_record(request):
 
-    records = record.objects.all()
 
-    record_filters = record_filter()
+    records = record.objects.all()
+    
+    record_filters = record_filter(request.GET, queryset=records)
     
     filter_data = record_filters.qs
 
