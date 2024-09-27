@@ -235,7 +235,7 @@ def list_customer(request):
         'data': data
     }
 
-    return render(request, 'list_customer.html', context)
+    return render(request, 'list_customer', context)
 
 
 
